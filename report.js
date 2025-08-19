@@ -12,14 +12,18 @@ function printReports(pages) {
   console.log("============");
   console.log("REPORT");
   const sortedPages = sortPages(pages);
-  for (const sortedPage of sortedPages) {
-    const url = sortedPage[0];
-    const hit = sortedPage[1];
-    console.log(`${url}: :${hit}`);
-  }
+
+  // Convert to an array of objects for table display
+  const tableData = sortedPages.map(([url, hit]) => ({
+    URL: url,
+    Hits: hit,
+  }));
+
+  console.table(tableData);
 
   console.log("============");
 }
+
 module.exports = {
   printReports,
 };
